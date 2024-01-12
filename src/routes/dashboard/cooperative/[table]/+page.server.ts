@@ -30,7 +30,7 @@ export const actions: Actions = {
 
     try {
       await db.execute(
-        `DELETE FROM ${tableName} WHERE ${table.primaryKey}=${id}`,
+        `DELETE FROM ${tableName} WHERE ${table.primaryKey}='${id}'`,
       );
     } catch (e: any) {
       return { success: false, message: e.message };
@@ -44,17 +44,14 @@ export const actions: Actions = {
     const query = data.get("query");
     const table = params.table
     const sql = `SELECT * FROM ${table} WHERE (${query})`;
-    console.log(query);
-    console.log(table)
+
     let results;
     try {
       results = await db.execute(sql);
     } catch (e) {
       return { success: true, rows: [] }
     }
-
-    console.log(sql);
-    console.log(results[0]);
+  
     return { success: true, rows: results[0] }
   }
 };

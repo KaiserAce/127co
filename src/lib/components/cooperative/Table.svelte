@@ -72,7 +72,7 @@ async function handleSubmit(event) {
                 <td
                   class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
                 >
-                  <form method="POST" use:enhance>
+                  <form method="POST" action="?/delete" on:submit|preventDefault={handleSubmit}>
                     <input
                       type="hidden"
                       name="table"
